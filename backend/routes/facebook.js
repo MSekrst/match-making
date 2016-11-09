@@ -1,5 +1,5 @@
 import express from 'express';
-import passport from '../passport'
+import passport from '../helpers/passport'
 
 const facebookRouter = express.Router();
 

@@ -1,17 +1,21 @@
 import express from 'express';
 
-import dbConnection from '../mongo';
+import getDb from '../helpers/mongo';
 
 const matchRouter = express.Router();
 
-// pattern showcase
-matchRouter.get('/', (req, res, next) => {
-  const db = dbConnection();
-  db.collection('collenction-name').insertOne({
-    key: 'value'
-  });
+matchRouter.post('/', (req, res) => {
+  const db = getDb();
 
-  res.send('Server match working!');
+  db.collection('matches').insertOne(req.body, (err, match) => {
+    if (err) {
+      res.status(503).json({ message: "Data insert failed" });
+
+      return;
+    }
+
+    res.status(201).send({ ...req.body, _id: match.insertedId });
+  });
 });
 
 export default matchRouter;

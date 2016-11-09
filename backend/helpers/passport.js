@@ -1,4 +1,4 @@
-import fbConfig from '../config/fbConfig';
+import fbConfig from '../../config/fbConfig';
 
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -14,7 +14,7 @@ passport.use(new FacebookStrategy({
   function (accessToken, refreshToken, user, done) {
     done(null, user);
   }
-));
+))
 
 passport.serializeUser(function(user, done) {
   done(null, user);
