@@ -57,6 +57,8 @@
     "jquery": "^3.1.1",
     "morgan": "^1.7.0",
     "particles.js": "^2.0.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "next"
@@ -67,9 +69,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "clean": "rimraf backend-build",
     "build:backend:unix": "export NODE_ENV=development && npm run clean && babel backend --out-dir build-backend",
-    "build:backend:win": "set NODE_ENV=development && npm run clean && babel backend --out-dir build-backend",
+    "build:backend:win": "set NODE_ENV=development&& npm run clean && babel backend --out-dir build-backend",
     "build:backend:unix:watch": "export NODE_ENV=development && npm run clean && babel backend --out-dir build-backend -w",
-    "build:backend:win:watch": "set NODE_ENV=development && npm run clean && babel backend --out-dir build-backend -w",
+    "build:backend:win:watch": "set NODE_ENV=development&& npm run clean && babel backend --out-dir build-backend -w",
     "start:dev": "nodemon --watch build-backend build-backend/www.js"
   },
   "jest": {
