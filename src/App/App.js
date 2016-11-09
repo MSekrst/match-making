@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Panel from '../Panel/Panel';
 import Home from '../Home/Home';
-import { Match, Miss, Link, BrowserRouter as Router } from 'react-router';
+import { Match, Miss, BrowserRouter as Router } from 'react-router';
 import './App.css';
 
 class App extends Component {

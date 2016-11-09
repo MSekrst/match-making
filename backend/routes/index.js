@@ -1,7 +1,7 @@
 import express from 'express';
 
 import matchRouter from './match';
-import { io } from '../app';
+import facebookRouter from './facebook';
 
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/match', matchRouter);
+router.use('/facebook', facebookRouter);
 
 export default router;
