@@ -6,6 +6,9 @@ node_modules
 #editor files
 .idea
 
+#database
+database
+
 # testing
 coverage
 

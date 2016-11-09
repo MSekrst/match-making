@@ -1,31 +1,13 @@
 import debug from 'debug';
 import http from 'http';
+import SocketIO from 'socket.io';
 
 import app from './app';
 
 /**
- * Normalize a port into a number, string, or false.
- */
-function normalizePort(val) {
-  const port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-
-/**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '3000');
+const port = parseInt(process.env.PORT) || 3000;
 app.set('port', port);
 
 /**
@@ -55,7 +37,14 @@ function onError(error) {
   }
 }
 
-const server = http.createServer(app);
+const server = http.Server(app);
+
+const io = new SocketIO(server);
+
+// socket
+io.on('connection', () => {
+  console.log('Client connected!');
+});
 
 /**
  * Event listener for HTTP server "listening" event.
@@ -66,13 +55,12 @@ function onListening() {
     ? `pipe ${addr}`
     : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
-
-  console.log('Server is running!');
 }
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 server.listen(port);
+console.log('Server is running!');
 server.on('error', onError);
 server.on('listening', onListening);
