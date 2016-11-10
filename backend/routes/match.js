@@ -7,15 +7,38 @@ const matchRouter = express.Router();
 matchRouter.post('/', (req, res) => {
   const db = getDb();
 
-  db.collection('matches').insertOne(req.body, (err, match) => {
-    if (err) {
-      res.status(503).json({ message: "Data insert failed" });
+  const match = {
+    "username": req.body.username,
+    "companyName": req.body.companyName,
+    "score": calculateName(req.body.username, req.body.companyName)
+  }
 
+  db.collection('matches').findOneAndUpdate({
+    username: req.body.username,
+    companyName: req.body.companyName
+  }, match, {upsert: true, returnOriginal: false}, (err, match) => {
+    if (err) {
+      res.status(503).json({message: "Data insert failed"});
       return;
     }
+    res.status(200).send(match.value);
 
-    res.status(201).send({ ...req.body, _id: match.insertedId });
   });
 });
+
+function calculateName(username, companyName) {
+  var name = (username.toLowerCase().replace(/\s+/, "") + companyName.toLowerCase().replace(/\s+/, "")).substr(0, 20);
+  var matchString = "";
+  var match = 0;
+
+  for (var i = 0; i < name.length; i++) {
+    if (matchString.indexOf(name[i]) == -1) {
+      matchString += name[i];
+      match += name.charCodeAt(i);
+    }
+  }
+  match = match % 101;
+  return match;
+}
 
 export default matchRouter;
