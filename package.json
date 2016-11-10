@@ -58,13 +58,13 @@
     "mongodb": "^2.2.11",
     "morgan": "^1.7.0",
     "particles.js": "^2.0.0",
-    "passport": "^0.3.2",
-    "passport-facebook": "^2.1.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-facebook-login": "^3.4.0",
     "react-flip-move": "^2.6.4",
     "react-router": "next",
-    "socket.io": "^1.5.1"
+    "socket.io": "^1.5.1",
+    "whatwg-fetch": "^1.0.0"
   },
   "scripts": {
     "start": "node scripts/start.js",

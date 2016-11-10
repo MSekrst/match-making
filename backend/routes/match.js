@@ -8,17 +8,17 @@ matchRouter.post('/', (req, res) => {
   const db = getDb();
 
   const match = {
-    "username": req.body.username,
-    "companyName": req.body.companyName,
+    "username": req.body.username || "",
+    "companyName": req.body.companyName || "",
     "score": calculateName(req.body.username, req.body.companyName)
-  }
+  };
 
   db.collection('matches').findOneAndUpdate({
     username: req.body.username,
     companyName: req.body.companyName
-  }, match, {upsert: true, returnOriginal: false}, (err, match) => {
+  }, match, { upsert: true, returnOriginal: false }, (err, match) => {
     if (err) {
-      res.status(503).json({message: "Data insert failed"});
+      res.status(503).json({ message: "Data insert failed" });
       return;
     }
     res.status(200).send(match.value);
@@ -27,17 +27,19 @@ matchRouter.post('/', (req, res) => {
 });
 
 function calculateName(username, companyName) {
-  var name = (username.toLowerCase().replace(/\s+/, "") + companyName.toLowerCase().replace(/\s+/, "")).substr(0, 20);
-  var matchString = "";
-  var match = 0;
+  const name = (username.toLowerCase().replace(/\s+/, "") + companyName.toLowerCase().replace(/\s+/, "")).substr(0, 20);
+  let matchString = "";
+  let match = 0;
 
-  for (var i = 0; i < name.length; i++) {
+  for (let i = 0; i < name.length; i++) {
     if (matchString.indexOf(name[i]) == -1) {
       matchString += name[i];
       match += name.charCodeAt(i);
     }
   }
-  match = match % 101;
+
+  match = match % 100;
+
   return match;
 }
 
