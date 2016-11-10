@@ -46,8 +46,7 @@
     "url-loader": "0.5.7",
     "webpack": "1.13.2",
     "webpack-dev-server": "1.16.2",
-    "webpack-manifest-plugin": "1.1.0",
-    "whatwg-fetch": "1.0.0"
+    "webpack-manifest-plugin": "1.1.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -63,9 +62,9 @@
     "passport-facebook": "^2.1.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "socket.io": "^1.5.1",
     "react-flip-move": "^2.6.4",
-    "react-router": "next"
+    "react-router": "next",
+    "socket.io": "^1.5.1"
   },
   "scripts": {
     "start": "node scripts/start.js",
