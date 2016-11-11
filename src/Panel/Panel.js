@@ -59,14 +59,14 @@ class Panel extends Component {
     // }
 
     renderItems(){
-        return this.state.articles.map(item => <Item key={item._id} name={item.username.toUpperCase()} top={(item.index-1)*60+5} numberTop={(item.index-1)*60-12} color={(1-item.score/100)*35} score={item.score} />)
+        return this.state.articles.map(item => <Item key={item._id} name={item.username.toUpperCase()} top={(item.index-1)*60+5} numberTop={(item.index-1)*60-12} color={(item.score)} score={item.score} />)
     }
 
     render() {
         return (
             <div className="Panel">
                 <div className="panel">
-                    <div id="particles"/>
+                    <div id="particles" />
                     <img src={logo} width="230" style={{position: "absolute", left: 0, top: 0}}/>
                     <img src={logo} width="230" style={{position: "absolute", right: 0, bottom: 0}}/>
                     <div id="panelDiv">
