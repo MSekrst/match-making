@@ -5,11 +5,15 @@ import srce from './srce.png';
 export default class Item extends Component{
     render(){
         return <div className="panelRow" key={this.props.id}>
-            {this.props.name} + FACEBOOK = {this.props.score}%
-            <div style={{position: "absolute", right: 0, top: this.props.top+0.5, width: "45px", height: "33px", backgroundColor: "red"}}/>
-            <div style={{position: "absolute", right: 0, top: this.props.top, width: "45px", height: this.props.color, backgroundColor: "white"}}/>
-            <h5 style={{position: "absolute", right: 8, top: this.props.numberTop, color: "black"}}>{this.props.score}%</h5>
-            <img src={srce} height="35" width="45" style={{position: "absolute", right: 0, top: this.props.top}}/>
+            <div style={{textAlign: "left"}}>
+            {this.props.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FACEBOOK &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.props.score}%
+            </div>
+            <div>
+                <div style={{marginTop: "-25px", marginLeft: "90%", width: "45px", height: "34px", backgroundColor: "#e74b56"}}/>
+                <div style={{ marginTop: "-35px", marginLeft: "90%", width: "45px", height: this.props.color, backgroundColor: "white"}}/>
+                <img src={srce} height="36" width="45" style={{ marginTop: -this.props.color, marginLeft: "90%",}}/>
+                <h5 style={{ marginTop: "-35px",marginLeft: "91%", color: "black" }}>{this.props.score}%</h5>
+            </div>
             </div>;
     }
 }
