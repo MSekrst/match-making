@@ -60,7 +60,6 @@
     "particles.js": "^2.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-facebook-login": "^3.4.0",
     "react-flip-move": "^2.6.4",
     "react-router": "next",
     "react-select": "^1.0.0-rc.2",

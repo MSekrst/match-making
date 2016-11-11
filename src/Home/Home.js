@@ -3,7 +3,7 @@ import './Home.css';
 import logoqr from '../../images/qrcode.png';
 import logo from '../../images/logo.png';
 
-import { particles } from '../Panel/particles'
+import { particles } from '../particles'
 
 class Home extends Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ class Home extends Component {
       <div className="Home">
         <div className="container">
           <div id="particles"/>
-          <img src={logo} width="230" style={{position: "absolute", left: 0, top: 0}}/>
+          <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
           <div id="content">
             <h1>Career Speed Dating</h1>
             <p>Saznaj za koju si tvrtku rođen!<br />

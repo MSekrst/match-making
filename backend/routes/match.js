@@ -1,6 +1,6 @@
 import express from 'express';
 
-import getDb from '../helpers/mongo';
+import getDb from '../mongo/mongo';
 
 const matchRouter = express.Router();
 
@@ -24,7 +24,15 @@ matchRouter.post('/', (req, res) => {
       res.status(503).json({ message: "Data insert failed" });
       return;
     }
-    res.status(200).send(match.value);
+
+    db.collection('companies').find({ companyName }).toArray((err, company) => {
+      if (err) {
+        res.status(503).send({ ...match.value, message: 'Company lookup failed!' });
+        return;
+      }
+
+      res.status(200).send({ ...match.value, logoUrl: company[0].logoUrl });
+    });
   });
 });
 

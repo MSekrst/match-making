@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import 'particles.js';
-import './Panel.css';
+import '../particles.js';
+import './panel.css';
 import Item from './Item';
-import { particles } from './particles.js';
-import logo from './logo.png';
+import { particles } from '../particles.js';
+import logo from '../../images/logo.png';
 
 import FlipMove from 'react-flip-move';
 import 'whatwg-fetch';
@@ -44,7 +44,6 @@ class Panel extends Component {
                 <div className="panel">
                     <div id="particles"/>
                     <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
-                    <img src={logo} alt="" width="230" style={{position: "absolute", right: 0, bottom: 0}}/>
                     <div id="panelDiv">
                         <div id="panelHeader">
                             <h1 className="header">NAJBOLJI REZULTATI</h1>

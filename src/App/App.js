@@ -4,7 +4,7 @@ import Home from '../Home/Home';
 import Form from '../Form/Form';
 import Score from '../Score/Score';
 import { Match, Miss, BrowserRouter as Router } from 'react-router';
-import './App.css';
+import './app.css';
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
             <Match exactly pattern="/" component={Home} />
             <Match exactly pattern="/super-secret-route" component={Panel} />
             <Match exactly pattern="/match" component={Form}/>
-            <Match exactly pattern="/score" component={Score}/>
+            <Match pattern="/score" component={Score}/>
             <Miss render={() => <div className="miss"><h2>404 sorry</h2></div>} />
           </div>
         </Router>

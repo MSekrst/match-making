@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import 'whatwg-fetch';
+import { Redirect } from 'react-router';
 
 import logo from '../../images/logo.png';
 import './form.css';
@@ -41,7 +42,6 @@ class Form extends  Component {
         this.setState({
           companies: value
         });
-      }, err => {
       });
     });
   }
@@ -49,7 +49,7 @@ class Form extends  Component {
   sendData() {
     const company = this.getCompany();
 
-    window.FB.getLoginStatus(function(response) {
+    window.FB.getLoginStatus((response) => {
       if (response.status === 'connected') {
       }
       else {
@@ -57,10 +57,10 @@ class Form extends  Component {
       }
 
       if (company) {
-        window.FB.api('/me?fields=name,picture.type(large)', (res) => {
+        window.FB.api('/me?fields=name,picture.type(large)', (fbData) => {
 
           const body = {
-            username: res.name,
+            username: fbData.name,
             companyName: company
           };
 
@@ -71,7 +71,19 @@ class Form extends  Component {
               "Content-Type": "application/json"
             }
           }).then(res => {
-              window.location.pathname = '/';
+            const promise = res.json();
+
+            promise.then(data => {
+              this.setState({
+                params: {
+                  userUrl: fbData.picture.data.url,
+                  score: data.score,
+                  logoUrl: data.logoUrl,
+                  name: fbData.name,
+                  company: data.companyName
+                }
+              });
+            });
           });
         });
       } else {
@@ -85,6 +97,13 @@ class Form extends  Component {
   }
 
   render() {
+    if (this.state.params) {
+      return <Redirect to={{
+        pathname: '/score',
+        query: this.state.params
+      }}/>
+    }
+
     return <div id="formDiv">
       <img id="logo" src={logo} alt="Career Speed Dating"/>
       <Select className="selector"

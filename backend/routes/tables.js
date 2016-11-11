@@ -1,6 +1,6 @@
 import express from 'express';
 
-import getDb from '../helpers/mongo';
+import getDb from '../mongo/mongo';
 
 const tableRouter = express.Router();
 

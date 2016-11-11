@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectDb } from './helpers/mongo';
+import { connectDb } from './mongo/mongo';
 
 import routes from './routes';
 
