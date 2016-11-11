@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../particles.js';
 import './panel.css';
 import Item from './Item';
-import { particles } from '../particles.js';
+import { particles } from '../particles';
 import logo from '../../images/logo.png';
 
 import FlipMove from 'react-flip-move';
@@ -31,6 +31,7 @@ class Panel extends Component {
     }
 
     componentDidMount() {
+        console.log('', particles);
         window.particlesJS('particles', particles);
     }
 
@@ -39,25 +40,27 @@ class Panel extends Component {
     }
 
     render() {
-        return (
-            <div className="Panel">
-                <div className="panel">
-                    <div id="particles"/>
-                    <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
-                    <div id="panelDiv">
-                        <div id="panelHeader">
-                            <h1 className="header">NAJBOLJI REZULTATI</h1>
+        if (this.props.params.pass === 'tigrovi') {
+            return (
+                <div className="Panel">
+                    <div className="panel">
+                        <div id="particles"/>
+                        <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
+                        <div id="panelDiv">
+                            <div id="panelHeader">
+                                <h1 className="header">NAJBOLJI REZULTATI</h1>
+                            </div>
+                            <FlipMove id="panelDiv1" staggerDurationBy="30"
+                                      duration={500}
+                                      enterAnimation="elevator"
+                                      leaveAnimation="elevator">
+                                { this.renderItems()}
+                            </FlipMove>
                         </div>
-                        <FlipMove id="panelDiv1" staggerDurationBy="30"
-                                  duration={500}
-                                  enterAnimation="elevator"
-                                  leaveAnimation="elevator" >
-                        { this.renderItems()}
-                        </FlipMove>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
 }
 

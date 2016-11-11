@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+
 import './Home.css';
 import logoqr from '../../images/qrcode.png';
 import logo from '../../images/logo.png';
-
 import { particles } from '../particles'
 
 class Home extends Component {
