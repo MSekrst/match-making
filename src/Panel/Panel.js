@@ -35,7 +35,7 @@ class Panel extends Component {
     }
 
     renderItems(){
-        return this.state.articles.map(item => <Item key={item._id} name={item.username.toUpperCase()} top={(item.index-1)*60+5} numberTop={(item.index-1)*60-12} color={(1-item.score/100)*35} score={item.score} />)
+        return this.state.articles.map(item => <Item key={item._id} name={item.username.toUpperCase()} company={item.companyName.toUpperCase()} top={(item.index-1)*60+5} numberTop={(item.index-1)*60-12} color={(item.score)} score={item.score} />)
     }
 
     render() {
