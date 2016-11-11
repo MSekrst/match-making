@@ -40,7 +40,7 @@ function calculateName(username, companyName) {
     }
   }
 
-  match = match % 100;
+  match = match % 80 + 20;
 
   return match;
 }

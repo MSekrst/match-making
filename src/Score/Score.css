@@ -1,0 +1,78 @@
+*{
+    font-family: "PT Sans";
+}
+#container{
+    background-color: #c4e2f6 ;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#contentContainer{
+    background-color: white;
+    width: 100%;
+    height: 60%;
+    top: 24%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+    padding-bottom: 2%;
+    max-width: 500px;
+    max-height: 850px;
+}
+
+#imageContainer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 30%;
+}
+
+.image{
+    width:30%;
+    position:relative;
+    display: inline-block;
+    float:left;
+    max-width: 200px;
+}
+
+.srce{
+    width:100%;
+    height: 100%;
+    position: absolute;
+}
+
+.loader2{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 55%;
+    height: 30%;
+    position: relative;
+    float: right;
+    max-width: 250px;
+    margin:10%;
+    top: 25%;
+}
+
+.header2{
+    color: black;
+    font-weight: 500;
+    font-size: 35px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.plus{
+    font-weight: 700;
+    font-size: x-large;
+    color: black;
+    margin-top: 10%;
+}

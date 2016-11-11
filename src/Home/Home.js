@@ -16,7 +16,6 @@ class Home extends Component {
         <div className="container">
           <div id="particles"/>
           <img src={logo} width="230" style={{position: "absolute", left: 0, top: 0}}/>
-          <img src={logo} width="230" style={{position: "absolute", right: 0, bottom: 0}}/>
           <div id="content">
             <h1>Career Speed Dating</h1>
             <p>Saznaj za koju si tvrtku rođen!<br />
