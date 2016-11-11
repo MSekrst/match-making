@@ -7,7 +7,6 @@ import dotenv from 'dotenv';
 import { connectDb } from './helpers/mongo';
 
 import routes from './routes';
-import passport from 'passport'
 
 const app = express();
 
@@ -23,8 +22,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session());
 
 // server static files from 'build' folder
 app.use(express.static('build'));

@@ -7,22 +7,24 @@ const matchRouter = express.Router();
 matchRouter.post('/', (req, res) => {
   const db = getDb();
 
+  const username = req.body.username || '';
+  const companyName = req.body.companyName || '';
+
   const match = {
-    "username": req.body.username || "",
-    "companyName": req.body.companyName || "",
-    "score": calculateName(req.body.username, req.body.companyName)
+    username,
+    companyName,
+    score: calculateName(username, companyName)
   };
 
   db.collection('matches').findOneAndUpdate({
-    username: req.body.username,
-    companyName: req.body.companyName
+    username,
+    companyName
   }, match, { upsert: true, returnOriginal: false }, (err, match) => {
     if (err) {
       res.status(503).json({ message: "Data insert failed" });
       return;
     }
     res.status(200).send(match.value);
-
   });
 });
 

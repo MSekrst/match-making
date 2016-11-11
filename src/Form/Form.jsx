@@ -15,6 +15,7 @@ class Form extends  Component {
     this.renderOptions = this.renderOptions.bind(this);
     this.responseFacebook = this.responseFacebook.bind(this);
     this.sendData = this.sendData.bind(this);
+    this.setCompany = this.setCompany.bind(this);
   }
 
   responseFacebook(res) {
@@ -26,6 +27,24 @@ class Form extends  Component {
     this.setState({
       user
     });
+
+    const body = {
+
+    };
+
+    fetch('/match', {
+      method: 'POST',
+      body,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      const promise = res.json();
+
+      promise.then(value => {
+
+      });
+    });
   }
 
   sendData() {
@@ -34,9 +53,19 @@ class Form extends  Component {
       companyName: this.state.currentCompany
     };
 
-    console.log('sendData');
+    console.log('sendData', data);
 
-    // TODO send data using fetch
+    // TODO - send data using fetch
+  }
+
+  setCompany() {
+    const select = document.getElementById('companySelector');
+
+    const value = select.options[select.selectedIndex].value;
+
+    this.setState({
+      currentCompany: value
+    });
   }
 
   componentWillMount() {
@@ -48,6 +77,10 @@ class Form extends  Component {
         this.setState({
           companies: value
         });
+
+        this.setState({
+          currentCompany: value[0].companyName || ''
+        });
       }, err => {
         console.log('err', err);
       });
@@ -55,25 +88,23 @@ class Form extends  Component {
   }
 
   renderOptions() {
-    return this.state.companies.map(com => <option value={com.companyName}>{com.companyName}</option>);
+    return this.state.companies.map(com => <option id={com._id} value={com.companyName}>{com.companyName}</option>);
   }
 
   render() {
     console.log('U render', this.state);
 
     return <div>
+      <h3>Hello {this.state.user.name} </h3>
+      <select name="companyName" id="companySelector" onChange={this.setCompany}>
+        {this.renderOptions()}
+      </select>
       <FacebookLogin
         appId="363015760698558"
         autoLoad={true}
         fields="name,picture"
         callback={this.responseFacebook}
       />
-      <h3>Hello {this.state.user.name} </h3>
-      <select name="companyName" onChange={this.setCompany}>
-        {this.renderOptions()}
-      </select>
-      <input type="hidden" name="username" value={this.state.user.name}/>
-      <button onClick={this.sendData}>Send</button>
     </div>
   }
 
