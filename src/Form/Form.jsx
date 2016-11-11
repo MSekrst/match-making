@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import FacebookLogin from 'react-facebook-login';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import 'whatwg-fetch';
+
+import logo from '../../images/logo.png';
+import './form.css';
 
 class Form extends  Component {
   constructor(props) {
@@ -8,64 +12,24 @@ class Form extends  Component {
 
     this.state = {
       companies: [],
-      user: {},
-      currentCompany: ''
+      active: ''
     };
 
-    this.renderOptions = this.renderOptions.bind(this);
-    this.responseFacebook = this.responseFacebook.bind(this);
-    this.sendData = this.sendData.bind(this);
     this.setCompany = this.setCompany.bind(this);
+    this.sendData = this.sendData.bind(this);
+    this.getCompany = this.getCompany.bind(this);
   }
 
-  responseFacebook(res) {
-    const user = {
-      name: res.name,
-      picture: res.picture.data
-    };
-
-    this.setState({
-      user
-    });
-
-    const body = {
-
-    };
-
-    fetch('/match', {
-      method: 'POST',
-      body,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }).then(res => {
-      const promise = res.json();
-
-      promise.then(value => {
-
+  setCompany(i) {
+    if (!i) {
+      this.setState({
+        active: ''
       });
-    });
-  }
-
-  sendData() {
-    const data = {
-      username: this.state.user.name,
-      companyName: this.state.currentCompany
-    };
-
-    console.log('sendData', data);
-
-    // TODO - send data using fetch
-  }
-
-  setCompany() {
-    const select = document.getElementById('companySelector');
-
-    const value = select.options[select.selectedIndex].value;
-
-    this.setState({
-      currentCompany: value
-    });
+    } else {
+      this.setState({
+        active: i.value
+      });
+    }
   }
 
   componentWillMount() {
@@ -73,41 +37,71 @@ class Form extends  Component {
       const promise = res.json();
 
       promise.then(value => {
-        console.log('value ', value);
+        value = value.map(x => ({value: x.companyName, label: x.companyName, img: x.logoUrl}));
         this.setState({
           companies: value
         });
-
-        this.setState({
-          currentCompany: value[0].companyName || ''
-        });
       }, err => {
-        console.log('err', err);
       });
     });
   }
 
-  renderOptions() {
-    return this.state.companies.map(com => <option id={com._id} value={com.companyName}>{com.companyName}</option>);
+  sendData() {
+    const company = this.getCompany();
+
+    window.FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+      }
+      else {
+        window.FB.login();
+      }
+
+      if (company) {
+        window.FB.api('/me?fields=name,picture.type(large)', (res) => {
+
+          const body = {
+            username: res.name,
+            companyName: company
+          };
+
+          fetch('/match', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              "Content-Type": "application/json"
+            }
+          }).then(res => {
+              window.location.pathname = '/';
+          });
+        });
+      } else {
+        console.log('Company not set');
+      }
+    });
+  }
+
+  getCompany() {
+    return this.state.active || '';
   }
 
   render() {
-    console.log('U render', this.state);
-
-    return <div>
-      <h3>Hello {this.state.user.name} </h3>
-      <select name="companyName" id="companySelector" onChange={this.setCompany}>
-        {this.renderOptions()}
-      </select>
-      <FacebookLogin
-        appId="363015760698558"
-        autoLoad={true}
-        fields="name,picture"
-        callback={this.responseFacebook}
+    return <div id="formDiv">
+      <img id="logo" src={logo} alt="Career Speed Dating"/>
+      <Select className="selector"
+        name="companies"
+        value={this.state.active }
+        options={this.state.companies}
+        optionRenderer={(item) =>
+        <div className="selectCompany">
+          <img src={item.img} alt="" className="optionImage"/>
+          <span className="companyName">{item.label}</span>
+        </div>}
+        onChange={this.setCompany}
       />
+      <br />
+      <div id="sendContainer" onClick={this.sendData}>Send</div>
     </div>
   }
-
 }
 
 export default Form;
