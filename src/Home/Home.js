@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Redirect } from 'react-router';
 
 import './Home.css';
 import logoqr from '../../images/qrcode.png';
@@ -11,6 +12,10 @@ class Home extends Component {
   }
 
   render() {
+    // if (!this.props.location.query || !this.props.location.query.pass || this.props.location.query.pass !== 'tigrovi') {
+    //   return <Redirect to="/match"/>
+    // }
+
     return (
       <div className="Home">
         <div className="container">

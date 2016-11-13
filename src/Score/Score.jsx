@@ -2,16 +2,21 @@ import React, {Component} from 'react';
 import './score.css';
 import srce from '../../images/srce_plavo.png';
 import logo from '../../images/logo.png';
+import { Redirect } from 'react-router';
 
 class Score extends Component {
 
   render() {
+    if (!this.props.location.query || !this.props.location.query.score) {
+      return <Redirect to="/match"/>
+    }
+
     const score = parseInt(this.props.location.query.score, 10);
 
     return <div id="container">
       <div id="contentContainer">
         <img src={logo} alt="" width="80px" style={{position: "absolute", left: "0", top: "12%"}}/>
-        <h1 style={{ fontWeight: 400}} className="header2">Your career match:</h1>
+        <h1 style={{ fontWeight: 400}} className="header2">Your career match</h1>
         <div id="imageContainer">
         <img className="image"
              alt={this.props.location.query.name}
@@ -30,6 +35,7 @@ class Score extends Component {
         <img className="srce" src={srce} alt=""/>
         <h1 style={{position: "absolute", top: "43px", color: "black", fontWeight: 400}}>{score}%</h1>
       </div>
+      <a id="backLink" href="/match"><div id="linkContent" href="/match">Try again</div></a>
     </div>
   }
 }

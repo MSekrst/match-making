@@ -13,22 +13,30 @@ class Form extends  Component {
 
     this.state = {
       companies: [],
-      active: ''
+      active: '',
+      activeUrl: '',
+      warning: false
     };
 
     this.setCompany = this.setCompany.bind(this);
     this.sendData = this.sendData.bind(this);
     this.getCompany = this.getCompany.bind(this);
+    this.renderWarning = this.renderWarning.bind(this);
+    this.renderCompanyLogo = this.renderCompanyLogo.bind(this);
   }
 
-  setCompany(i) {
+  setCompany(i, u, t) {
     if (!i) {
       this.setState({
-        active: ''
+        active: '',
+        warning: true,
+        activeUrl: ''
       });
     } else {
       this.setState({
-        active: i.value
+        active: i.value,
+        warning: false,
+        activeUrl: i.img
       });
     }
   }
@@ -87,13 +95,29 @@ class Form extends  Component {
           });
         });
       } else {
-        console.log('Company not set');
+        this.setState({
+          warning: true
+        });
       }
     });
   }
 
   getCompany() {
     return this.state.active || '';
+  }
+
+  renderWarning() {
+    if (this.state.warning) {
+      return <div id="warning">
+        Please select a company to match with
+      </div>
+    }
+  }
+
+  renderCompanyLogo() {
+    if (this.state.activeUrl) {
+      return <img id="currentLogo" src={this.state.activeUrl} alt={this.state.active}/>
+    }
   }
 
   render() {
@@ -106,9 +130,11 @@ class Form extends  Component {
 
     return <div id="formDiv">
       <img id="logo" src={logo} alt="Career Speed Dating"/>
+      {this.renderWarning()}
       <Select className="selector"
         name="companies"
-        value={this.state.active }
+        searchable={false}
+        value={this.state.active}
         options={this.state.companies}
         optionRenderer={(item) =>
         <div className="selectCompany">
@@ -117,6 +143,7 @@ class Form extends  Component {
         </div>}
         onChange={this.setCompany}
       />
+      {this.renderCompanyLogo()}
       <br />
       <div id="sendContainer" onClick={this.sendData}>Send</div>
     </div>

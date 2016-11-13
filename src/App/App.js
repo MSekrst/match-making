@@ -12,10 +12,10 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Match exactly pattern="/" component={Home} />
-            <Match exactly pattern="/super-secret-route/:pass" component={Panel} />
+            <Match pattern="/" component={Home} />
+            <Match exactly pattern="/tables/matches/:pass" component={Panel} />
             <Match exactly pattern="/match" component={Form}/>
-            <Match pattern="/score" component={Score}/>
+            <Match exactly pattern="/score" component={Score}/>
             <Miss render={() => <div className="miss"><h2>404 sorry</h2></div>} />
           </div>
         </Router>

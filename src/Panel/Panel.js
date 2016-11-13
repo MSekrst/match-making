@@ -31,7 +31,6 @@ class Panel extends Component {
     }
 
     componentDidMount() {
-        console.log('', particles);
         window.particlesJS('particles', particles);
     }
 
