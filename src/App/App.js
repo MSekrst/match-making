@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Panel from '../Panel/Panel';
-import Home from '../Home/Home';
+import Promo from '../Promo/Promo';
 import Form from '../Form/Form';
 import Score from '../Score/Score';
 import { Match, Miss, BrowserRouter as Router } from 'react-router';
@@ -12,7 +12,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Match pattern="/" component={Home} />
+            <Match exactly pattern="/" component={Form}/>
+            <Match exactly pattern="/promo/:pass" component={Promo} />
             <Match exactly pattern="/tables/matches/:pass" component={Panel} />
             <Match exactly pattern="/match" component={Form}/>
             <Match exactly pattern="/score" component={Score}/>
