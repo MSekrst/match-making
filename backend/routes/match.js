@@ -11,6 +11,10 @@ matchRouter.post('/', (req, res) => {
   const username = req.body.username || '';
   const companyName = req.body.companyName || '';
 
+  if (!username || !companyName) {
+    return;
+  }
+
   const match = {
     username,
     companyName,
@@ -37,7 +41,7 @@ matchRouter.post('/', (req, res) => {
 
     db.collection('companies').updateOne({ companyName }, { $inc: { matches: 1 }});
 
-    db.collection('companies').find({}, { sort: "matches", limit: 10 }).toArray((err, companies) => {
+    db.collection('companies').find({}, { sort: [['matches','desc']], limit: 10 }).toArray((err, companies) => {
       if (err) {
         console.log('---ERROR--- while getting companies for socket');
       }

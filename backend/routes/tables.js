@@ -22,4 +22,22 @@ tableRouter.get('/matches', (req, res) => {
   });
 });
 
+tableRouter.get('/companies', (req, res) => {
+  const db = getDb();
+
+  db.collection('companies').find({}, { sort: [['matches','desc']], limit: 10 }).toArray((err, companies) => {
+    if (err) {
+      res.status(503).send({ message: "Error while getting companies" });
+
+      return;
+    }
+
+    for (let i = 0; i < companies.length; ++i) {
+      companies[i]['index'] = i + 1;
+    }
+
+    res.status(200).send(companies);
+  });
+});
+
 export default tableRouter;
