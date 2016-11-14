@@ -39,9 +39,8 @@ function onError(error) {
 
 const server = http.Server(app);
 
-const io = new SocketIO(server);
-
-// socket
+// sockets
+export const io = new SocketIO(server);
 io.on('connection', () => {
   console.log('Client connected!');
 });

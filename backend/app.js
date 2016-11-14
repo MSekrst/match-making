@@ -4,8 +4,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { connectDb } from './mongo/mongo';
 
+import { connectDb } from './mongo/mongo';
 import routes from './routes';
 
 const app = express();
@@ -20,7 +20,7 @@ connectDb();
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // server static files from 'build' folder
