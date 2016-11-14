@@ -1,6 +1,7 @@
 import express from 'express';
 
 import getDb from '../mongo/mongo';
+import { io } from '../www';
 
 const matchRouter = express.Router();
 
@@ -27,16 +28,42 @@ matchRouter.post('/', (req, res) => {
 
     db.collection('companies').find({ companyName }).toArray((err, company) => {
       if (err) {
-        res.status(503).send({ ...match.value, message: 'Company lookup failed!' });
+        res.status(200).send({ ...match.value, message: 'Company lookup failed!' });
         return;
       }
 
       res.status(200).send({ ...match.value, logoUrl: company[0].logoUrl });
     });
+
+    db.collection('companies').updateOne({ companyName }, { $inc: { matches: 1 }});
+
+    db.collection('companies').find({}, { sort: "matches", limit: 10 }).toArray((err, companies) => {
+      if (err) {
+        console.log('---ERROR--- while getting companies for socket');
+      }
+
+      for (let i = 0; i < companies.length; ++i) {
+        companies[i]['index'] = i + 1;
+      }
+
+      io.emit('topCompanies', { companies });
+    });
+
+    db.collection('matches').find({}, { sort: [['score','desc']], limit: 10 }).toArray((err, matches) => {
+      if (err) {
+        console.log('---ERROR--- while getting matches for socket');
+      }
+
+      for (let i = 0; i < matches.length; ++i) {
+        matches[i]['index'] = i + 1;
+      }
+
+      io.emit('topMatches', { matches });
+    });
   });
 });
 
-function calculateName(username, companyName) {
+const calculateName = (username, companyName) => {
   const name = (username.toLowerCase().replace(/\s+/, "") + companyName.toLowerCase().replace(/\s+/, "")).substr(0, 20);
   let matchString = "";
   let match = 0;
@@ -51,6 +78,6 @@ function calculateName(username, companyName) {
   match = match % 80 + 20;
 
   return match;
-}
+};
 
 export default matchRouter;

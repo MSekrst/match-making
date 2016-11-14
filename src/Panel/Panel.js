@@ -12,32 +12,42 @@ class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      articles: []
+      matches: []
     };
     this.renderItems = this.renderItems.bind(this);
   }
 
   componentWillMount() {
-      fetch('/tables/matches').then((res) => {
-        const promise = res.json();
+    fetch('/tables/matches').then((res) => {
+      const promise = res.json();
 
-        promise.then(value => {
-          this.setState({
-            articles: value
-          });
+      promise.then(value => {
+        this.setState({
+          matches: value
         });
       });
-    }
+    });
+  }
 
   componentDidMount() {
     window.particlesJS('particles', particles);
+
+    let socket = window.io();
+
+    socket.on('topMatches', (newMatches) => {
+      this.setState({ matches: newMatches.matches });
+    });
   }
 
   renderItems() {
-    return this.state.articles.map(item => <Item key={item._id} name={item.username.toUpperCase()}
-                                                 company={item.companyName.toUpperCase()}
-                                                 top={(item.index - 1) * 60 + 5} numberTop={(item.index - 1) * 60 - 12}
-                                                 color={(item.score)} score={item.score}/>)
+    if (!this.state.matches) {
+      return <div>No results yet</div>
+    }
+
+    return this.state.matches.map(item => <Item key={item._id} name={item.username.toUpperCase()}
+                                                company={item.companyName.toUpperCase()}
+                                                top={(item.index - 1) * 60 + 5} numberTop={(item.index - 1) * 60 - 12}
+                                                color={(item.score)} score={item.score}/>)
   }
 
   render() {
