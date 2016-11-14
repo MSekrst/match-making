@@ -8,7 +8,7 @@ export default class Item extends Component{
                 <div style={{display: "inline-block", fontWeight: 400}}>{this.props.name}  </div>
             </div>
             <div className="logoBest">
-                <img src={this.props.image} alt="" style={{position: "absolute", width: "150px"}}/>
+                <img src={this.props.image} alt="" style={{position: "absolute", height: "60px"}}/>
             </div>
         </div>;
     }
