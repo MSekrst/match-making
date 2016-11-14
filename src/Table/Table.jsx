@@ -7,6 +7,8 @@ import './table.css';
 import { particles } from '../particles';
 import logo from '../../images/logo.png';
 
+import Company from './Company';
+
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,18 @@ class Table extends Component {
   }
 
   componentWillMount() {
+    fetch('/tables/companies').then((res) => {
+      const promise = res.json();
 
+      console.log(promise);
+
+      promise.then(value => {
+        console.log(value);
+        this.setState({
+          companies: value
+        });
+      });
+    });
   }
 
   componentDidMount() {
@@ -31,10 +44,35 @@ class Table extends Component {
   }
 
   renderItems() {
+    if (!this.state.companies) {
+      return <div>No results yet</div>
+    }
+
+    return this.state.companies.map(item => <Company key={item._id} name={item.companyName.toUpperCase()} image={item.logoUrl} match={item.matches}/>)
   }
 
   render() {
-    return null;
+    if (this.props.params.pass === 'tigrovi') {
+      return (
+          <div className="Panel">
+            <div className="panel">
+              <div id="particles"/>
+              <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
+              <div id="panelDiv">
+                <div id="panelHeader">
+                  <h1 className="header" style={{ fontSize: "50px"}}>COMPANIES WITH THE MOST MATCHES</h1>
+                </div>
+                <FlipMove id="panelDiv1" staggerDurationBy="30"
+                          duration={500}
+                          enterAnimation="elevator"
+                          leaveAnimation="elevator">
+                  { this.renderItems()}
+                </FlipMove>
+              </div>
+            </div>
+          </div>
+      );
+    }
   }
 }
 

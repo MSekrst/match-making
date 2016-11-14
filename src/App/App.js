@@ -16,7 +16,7 @@ class App extends Component {
             <Match exactly pattern="/" render={() => { return <Redirect to="/match"/> }}/>
             <Match exactly pattern="/promo/:pass" component={Promo} />
             <Match exactly pattern="/table/matches/:pass" component={Panel} />
-            <Match exactly pattern="/table/comapines/:pass" component={Table} />
+            <Match exactly pattern="/table/companies/:pass" component={Table} />
             <Match exactly pattern="/match" component={Form}/>
             <Match exactly pattern="/score" component={Score}/>
             <Miss render={() => <div className="miss"><h2>404 sorry</h2></div>} />
