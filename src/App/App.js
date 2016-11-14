@@ -3,6 +3,7 @@ import Panel from '../Panel/Panel';
 import Promo from '../Promo/Promo';
 import Form from '../Form/Form';
 import Score from '../Score/Score';
+import Table from '../Table/Table';
 import { Match, Miss, BrowserRouter as Router, Redirect } from 'react-router';
 import './app.css';
 
