@@ -5,9 +5,9 @@ import srce from '../../images/srce.png';
 export default class Item extends Component{
   render() {
     return <div className="panelRow" key={this.props.id}>
-      <div style={{textAlign: "left"}}>
-        <span style={{width: "30%"}}>{this.props.name}  </span>
-        <span style={{color: "black", fontWeight: "600", width: "30%"}}>{this.props.company}</span>
+      <div style={{textAlign: "left",fontSize: "30px", width: "100%"}}>
+        <div style={{width: "50%", display: "inline-block"}}>{this.props.name}  </div>
+        <div style={{color: "black", display: "inline-block", fontWeight: "600", width: "50%"}}>{this.props.company}</div>
       </div>
       <div>
         <div className="loader">
@@ -19,7 +19,7 @@ export default class Item extends Component{
             position: "absolute"
           }}/>
           <img src={srce} alt="" style={{position: "absolute", top: "1px", width: "50px", height: "50px"}}/>
-          <h5 style={{position: "absolute", top: "-10px", color: "black", fontWeight: 400}}>{this.props.score}%</h5>
+          <h5 style={{position: "absolute", top: "-10px", color: "black", fontWeight: "bold"}}>{this.props.score}%</h5>
         </div>
       </div>
     </div>;

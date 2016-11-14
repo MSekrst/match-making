@@ -33,3 +33,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.title{
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.instruction{
+  font-size: 30px;
+  font-weight: 400;
+  color: #777777;
+}

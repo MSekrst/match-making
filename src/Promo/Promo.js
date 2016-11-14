@@ -19,11 +19,12 @@ class Promo extends Component {
             <div id="particles"/>
             <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
             <div id="content">
-              <h1>Career Speed Dating</h1>
-              <p>Saznaj za koju si tvrtku rođen!<br />
-                goo.gl/5oIR<br />
-                ILI</p>
-              <img src={logoqr} alt="goo.gl/5oIR" height="300"/>
+              <h1 className="title"><span style={{color: "#ec0a12"}}>Career</span><span style={{color: "#0372b8"}}> Speed Dating</span></h1>
+              <div className="instruction">Which company is the best for <span style={{fontWeight: 700, color: "black"}}>YOU</span>?</div>
+              <div className="instruction">Visit <span style={{color: "black", fontSize: "45px", fontWeight: "bold"}}>goo.gl/5oIR</span></div>
+              <div className="instruction">or scan:</div>
+              <img src={logoqr} alt="goo.gl/5oIR" height="350"/>
+              <div className="instruction">to find out!</div>
             </div>
           </div>
         </div>

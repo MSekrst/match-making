@@ -49,7 +49,7 @@ class Panel extends Component {
             <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
             <div id="panelDiv">
               <div id="panelHeader">
-                <h1 className="header">NAJBOLJI REZULTATI</h1>
+                <h1 className="header" style={{ fontSize: "50px"}}>NAJBOLJI REZULTATI</h1>
               </div>
               <FlipMove id="panelDiv1" staggerDurationBy="30"
                         duration={500}
