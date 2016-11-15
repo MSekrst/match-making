@@ -92,15 +92,13 @@
 #backLink {
   position: absolute;
   bottom: 20px;
-  text-decoration: none;
-}
-
-#linkContent {
   padding: 10px 100px 10px 100px;
   background-color: #0874ba;
   color: white;
   font-size: 20px;
   border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 @media(max-width: 387px){
