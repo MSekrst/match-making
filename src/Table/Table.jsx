@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import FlipMove from 'react-flip-move';
-import 'whatwg-fetch';
-
 import '../particles.js';
 import './table.css';
 import { particles } from '../particles';
-import logo from '../../images/logo.png';
 
 class Table extends Component {
   constructor(props) {
@@ -16,12 +12,8 @@ class Table extends Component {
     this.renderItems = this.renderItems.bind(this);
   }
 
-  componentWillMount() {
-
-  }
-
   componentDidMount() {
-    window.particlesJS('particles', particles);
+    // window.particlesJS('particles', particles);
 
     let socket = window.io();
 

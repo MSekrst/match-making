@@ -2,7 +2,7 @@
     font-family: "PT Sans";
 }
 #container{
-    background-color: #c4e2f6 ;
+    background-color: white ;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -13,40 +13,52 @@
 #contentContainer{
     background-color: white;
     width: 100%;
-    height: 55%;
-    top: 24%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 50%;
+    top: 0;
+    /*left: 50%;
+    transform: translate(-50%, -50%);*/
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
-    padding-bottom: 2%;
-    max-width: 500px;
-    max-height: 850px;
 }
 
 #imageContainer{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
     height: 30%;
+    padding: 20px 0 10px 0;
 }
 
 .image{
-    width:30%;
-    position:relative;
-    display: inline-block;
-    float:left;
-    max-width: 200px;
+    height: 90px;
+    max-width: 180px;
+    width: auto;
+}
+
+.csd-link{
+  text-decoration: none;
+  color: black;
 }
 
 .srce{
-    width:100%;
-    height: 100%;
+    width:101%;
+    height: 101%;
     position: absolute;
+}
+
+.sc{
+    animation-name: loadScore;
+    animation-duration: 1s;
+}
+
+@keyframes loadScore{
+    from{
+        height: 100%;
+    }
+    to{
+        height: 0;
+    }
 }
 
 .loader2{
@@ -59,7 +71,7 @@
     float: right;
     max-width: 250px;
     margin:10%;
-    top: 23%;
+    top: 20%;
 }
 
 .header2{
@@ -71,15 +83,15 @@
 }
 
 .plus{
-    font-weight: 700;
-    font-size: x-large;
-    color: black;
-    margin-top: 10%;
+    font-weight: 400;
+    font-size: 30px;
+    color: #333;
+    margin-top: 25px;
 }
 
 #backLink {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   text-decoration: none;
 }
 
@@ -89,4 +101,18 @@
   color: white;
   font-size: 20px;
   border-radius: 10px;
+}
+
+@media(max-width: 387px){
+  .header2{
+    margin: 15px 0 30px 0!important;
+    font-size: 30px;
+  }
+}
+
+@media(max-width: 349px){
+  .header2{
+    margin: 12px 0 25px 0!important;
+    font-size: 25px;
+  }
 }

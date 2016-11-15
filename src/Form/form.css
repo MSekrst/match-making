@@ -8,11 +8,29 @@
 
 #logo {
   height: 200px;
+  margin-top: 10px;
   background-size: 100% 100%;
 }
 
 #companySelector {
   padding: 20px;
+}
+
+#currentLogo{
+  animation-name: showLogo;
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier();
+}
+
+@keyframes showLogo{
+  from{
+    padding-top: 50px;
+    opacity: 0.01;
+  }
+  to{
+    padding-top: 20px;
+    opacity: 1;
+  }
 }
 
 .selectCompany {
@@ -37,10 +55,10 @@
 #sendContainer {
   background-color: #0874ba;
   position: absolute;
-  bottom: 10px;
-  width: 40%;
-  margin-left: 30%;
-  color: white;
+  bottom: 30px;
+  left: 20%;
+  width: 60%;
+  color: whitesmoke;
   font-size: 20px;
   font-weight: bolder;
   padding: 10px 0 10px 0;
@@ -48,8 +66,22 @@
   cursor: pointer;
 }
 
+#sendContainer:disabled{
+  border: 1px solid #0874ba;
+  color:#0874ba;
+  background: whitesmoke;
+}
+
+.Select-control{
+  height: 50px!important;
+}
+
+.Select-placeholder, .Select--single > .Select-control .Select-value{
+  line-height: 48px!important;
+}
+
 .selector {
-  margin-top: 5%;
+  margin-top: 20px;
   margin-left: 5%;
   width: 90%;
 }

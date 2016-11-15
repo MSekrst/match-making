@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import 'whatwg-fetch';
 import { Redirect } from 'react-router';
 
 import logo from '../../images/logo.png';
 import './form.css';
 
-class Form extends  Component {
+class Form extends Component {
   constructor(props) {
     super(props);
 
@@ -15,13 +14,14 @@ class Form extends  Component {
       companies: [],
       active: '',
       activeUrl: '',
-      warning: false
+      warning: false,
+      user: null,
     };
 
     this.setCompany = this.setCompany.bind(this);
     this.sendData = this.sendData.bind(this);
     this.getCompany = this.getCompany.bind(this);
-    this.renderWarning = this.renderWarning.bind(this);
+    // this.renderWarning = this.renderWarning.bind(this);
     this.renderCompanyLogo = this.renderCompanyLogo.bind(this);
   }
 
@@ -46,7 +46,7 @@ class Form extends  Component {
       const promise = res.json();
 
       promise.then(value => {
-        value = value.map(x => ({value: x.companyName, label: x.companyName, img: x.logoUrl}));
+        value = value.map(x => ({ value: x.companyName, label: x.companyName, img: x.logoUrl }));
         this.setState({
           companies: value
         });
@@ -54,50 +54,54 @@ class Form extends  Component {
     });
   }
 
-  sendData() {
+  doTheWork() {
     const company = this.getCompany();
+    if (company) {
+      window.FB.api('/me?fields=name,picture.type(large)', (fbData) => {
+        const body = {
+          username: fbData.name,
+          companyName: company
+        };
 
-    window.FB.getLoginStatus((response) => {
-      if (response.status === 'connected') {
-      }
-      else {
-        window.FB.login();
-      }
+        fetch('/match', {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).then(res => {
+          const promise = res.json();
 
-      if (company) {
-        window.FB.api('/me?fields=name,picture.type(large)', (fbData) => {
-
-          const body = {
-            username: fbData.name,
-            companyName: company
-          };
-
-          fetch('/match', {
-            method: 'POST',
-            body: JSON.stringify(body),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          }).then(res => {
-            const promise = res.json();
-
-            promise.then(data => {
-              this.setState({
-                params: {
-                  userUrl: fbData.picture.data.url,
-                  score: data.score,
-                  logoUrl: data.logoUrl,
-                  name: fbData.name,
-                  company: data.companyName
-                }
-              });
+          promise.then(data => {
+            console.log(fbData);
+            this.setState({
+              params: {
+                userUrl: fbData.picture.data.url,
+                score: data.score,
+                logoUrl: data.logoUrl,
+                name: fbData.name,
+                company: data.companyName
+              }
             });
           });
         });
-      } else {
-        this.setState({
-          warning: true
+      });
+    } else {
+      this.setState({
+        warning: true
+      });
+    }
+  }
+
+  sendData() {
+    window.FB.getLoginStatus((response) => {
+      if (response.status !== 'connected') {
+        window.FB.login(() => {
+          this.doTheWork();
         });
+      }
+      else {
+        this.doTheWork();
       }
     });
   }
@@ -106,17 +110,17 @@ class Form extends  Component {
     return this.state.active || '';
   }
 
-  renderWarning() {
-    if (this.state.warning) {
-      return <div id="warning">
-        Please select a company to match with
-      </div>
-    }
-  }
+  // renderWarning() {
+  //   if (this.state.warning) {
+  //     return <div id="warning">
+  //       Please select a company to match with
+  //     </div>
+  //   }
+  // }
 
   renderCompanyLogo() {
     if (this.state.activeUrl) {
-      return <img id="currentLogo" src={this.state.activeUrl} alt={this.state.active}/>
+      return <img id="currentLogo" src={this.state.activeUrl} alt={this.state.active} />
     }
   }
 
@@ -125,28 +129,34 @@ class Form extends  Component {
       return <Redirect to={{
         pathname: '/score',
         query: this.state.params
-      }}/>
+      }} />
     }
 
-    return <div id="formDiv">
-      <img id="logo" src={logo} alt="Career Speed Dating"/>
-      {this.renderWarning()}
-      <Select className="selector"
-        name="companies"
-        searchable={false}
-        value={this.state.active}
-        options={this.state.companies}
-        optionRenderer={(item) =>
-        <div className="selectCompany">
-          <img src={item.img} alt="" className="optionImage"/>
-          <span className="companyName">{item.label}</span>
-        </div>}
-        onChange={this.setCompany}
-      />
-      {this.renderCompanyLogo()}
-      <br />
-      <div id="sendContainer" onClick={this.sendData}>Send</div>
-    </div>
+    return (
+      <div id="formDiv">
+        <img id="logo" src={logo} alt="Career Speed Dating" />
+        <Select className="selector"
+          name="companies"
+          searchable={false}
+          value={this.state.active}
+          options={this.state.companies}
+          optionRenderer={(item) =>
+            <div className="selectCompany">
+              <img src={item.img} alt="" className="optionImage" />
+              <span className="companyName">{item.label}</span>
+            </div>}
+          onChange={this.setCompany}
+          />
+        {this.renderCompanyLogo()}
+        <br />
+        <div style={{ position: 'fixed', width: '100%', bottom: 0, height: '30%' }}>
+          <div style={{ color: 'grey', width: '90%', padding: '20px' }}>
+            Select company and login with facebook. We need only your name.
+                </div>
+          <button disabled={this.getCompany() === ''} id="sendContainer" onClick={this.sendData}>Login with Facebook</button>
+        </div>
+      </div>
+    )
   }
 }
 
