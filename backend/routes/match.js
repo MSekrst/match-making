@@ -8,8 +8,14 @@ const matchRouter = express.Router();
 matchRouter.post('/', (req, res) => {
   const db = getDb();
 
+  console.log('', req.body);
+
   const username = req.body.username || '';
   const companyName = req.body.companyName || '';
+
+  if (!username || !companyName) {
+    return;
+  }
 
   const match = {
     username,
@@ -37,7 +43,7 @@ matchRouter.post('/', (req, res) => {
 
     db.collection('companies').updateOne({ companyName }, { $inc: { matches: 1 }});
 
-    db.collection('companies').find({}, { sort: "matches", limit: 10 }).toArray((err, companies) => {
+    db.collection('companies').find({}, { sort: [['matches','desc']], limit: 10 }).toArray((err, companies) => {
       if (err) {
         console.log('---ERROR--- while getting companies for socket');
       }
@@ -64,20 +70,17 @@ matchRouter.post('/', (req, res) => {
 });
 
 const calculateName = (username, companyName) => {
-  const name = (username.toLowerCase().replace(/\s+/, "") + companyName.toLowerCase().replace(/\s+/, "")).substr(0, 20);
-  let matchString = "";
-  let match = 0;
+  const name = (username.toLowerCase().replace(/\s+/, "").substr(0, 20) + companyName.toLowerCase().replace(/\s+/, ""));
 
-  for (let i = 0; i < name.length; i++) {
-    if (matchString.indexOf(name[i]) == -1) {
-      matchString += name[i];
-      match += name.charCodeAt(i);
-    }
+  let score = 0;
+
+  for (let i = 0; i < name.length; ++i) {
+    const value = name.charCodeAt(i) || 0;
+
+    score += 2 * value;
   }
 
-  match = match % 80 + 20;
-
-  return match;
+  return score % 75 + 25;
 };
 
 export default matchRouter;

@@ -7,7 +7,7 @@ const companiesRouter = express.Router();
 companiesRouter.get('/', (req, res) => {
   const db = getDb();
 
-  db.collection('companies').find({}).toArray((err, data) => {
+  db.collection('companies').find({}, { sort: 'companyName' }).toArray((err, data) => {
     if (err) {
       res.status(503).send({ message: "Error while getting companies from database" });
 
