@@ -7,6 +7,7 @@ import './panel.css';
 import Item from './Item';
 import { particles } from '../particles';
 import logo from '../../images/logo.png';
+import password from '../../config/password';
 
 class Panel extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class Panel extends Component {
   }
 
   render() {
-    if (this.props.params.pass === 'tigrovi') {
+    if (this.props.params.pass === password) {
       return (
         <div className="Panel">
           <div className="panel">

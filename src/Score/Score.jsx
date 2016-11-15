@@ -16,7 +16,7 @@ class Score extends Component {
 
   displayMessage(score) {
     if (score < 50) {
-      return 'Life goes on.';
+      return "Don't be sad. Try another company.";
     } else if (score < 80) {
       return 'Not bad at all.';
     } else {
@@ -32,24 +32,26 @@ class Score extends Component {
     const score = parseInt(this.props.location.query.score, 10);
     return <div id="container">
       <div id="contentContainer">
-        <div style={{ position: 'relative', display: 'flex', padding: '20px', paddingBottom: 0 }}>
-          <img src={logo} alt="" style={{ width: 'auto', height: '70px' }} />
-          <h1 style={{ fontWeight: 400, display: 'inline-block', marginTop: '10px', marginBottom: '45px' }} className="header2">Your career match</h1>
+        <div style={{ position: 'relative', display: 'flex', padding: '15px 10px 0 15px'}}>
+          <img src={logo} alt="" style={{ width: 'auto', height: '60px' }} />
+          <h1 style={{ fontWeight: 400, display: 'inline-block'}} className="header2">Your career match</h1>
         </div>
         <div id="imageContainer">
           <img className="image"
             alt={this.props.location.query.name}
             style={{ borderRadius: "30px", marginRight: "20px" }}
             src={this.props.location.query.userUrl} />
-          <span className="plus">@</span>
+          <span className="plus">+</span>
           <img className="image"
             alt={this.props.location.query.company}
             style={{ marginLeft: "10px" }}
             src={this.props.location.query.logoUrl} />
         </div>
         <label style={{ color: 'grey', position: 'absolute', width: '100%', left: 0, bottom: '10px' }}>
-          {this.displayMessage(score)}<br />
-          For real matches wisit us at: <a className="csd-link" href="http://careerdate.fer.hr/">Career speed dating</a>.</label>
+          <strong style={{color: '#ed1c24'}}>{this.displayMessage(score)}</strong><br />
+          For real matches visit <a className="csd-link" href="http://careerdate.fer.hr/">Career Speed Dating</a><br />
+          or <a className="csd-link" href="/match">try again</a>.
+        </label>
       </div>
       <div className="loader2">
         <div style={{ width: "100%", backgroundColor: "#ed1c24", top: ((99 - score) + '%'), height: (score + '%'), position: "absolute" }}>

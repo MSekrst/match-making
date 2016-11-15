@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router';
 
 import './promo.css';
 import logoqr from '../../images/qrcode.png';
 import logo from '../../images/logo.png';
 import { particles } from '../particles'
+import password from '../../config/password';
 
 class Promo extends Component {
   componentDidMount() {
@@ -12,7 +12,7 @@ class Promo extends Component {
   }
 
   render() {
-    if (this.props.params.pass === 'tigrovi') {
+    if (this.props.params.pass === password) {
       return (
         <div className="Home">
           <div className="container">

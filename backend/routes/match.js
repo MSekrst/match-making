@@ -8,8 +8,6 @@ const matchRouter = express.Router();
 matchRouter.post('/', (req, res) => {
   const db = getDb();
 
-  console.log('', req.body);
-
   const username = req.body.username || '';
   const companyName = req.body.companyName || '';
 

@@ -21,7 +21,6 @@ class Form extends Component {
     this.setCompany = this.setCompany.bind(this);
     this.sendData = this.sendData.bind(this);
     this.getCompany = this.getCompany.bind(this);
-    // this.renderWarning = this.renderWarning.bind(this);
     this.renderCompanyLogo = this.renderCompanyLogo.bind(this);
   }
 
@@ -109,14 +108,6 @@ class Form extends Component {
   getCompany() {
     return this.state.active || '';
   }
-
-  // renderWarning() {
-  //   if (this.state.warning) {
-  //     return <div id="warning">
-  //       Please select a company to match with
-  //     </div>
-  //   }
-  // }
 
   renderCompanyLogo() {
     if (this.state.activeUrl) {

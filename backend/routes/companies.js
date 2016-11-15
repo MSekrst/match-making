@@ -1,6 +1,7 @@
 import express from 'express';
 
 import getDb from '../mongo/mongo';
+import password from '../../config/password';
 
 const companiesRouter = express.Router();
 
@@ -19,7 +20,7 @@ companiesRouter.get('/', (req, res) => {
 });
 
 companiesRouter.post('/', (req, res) => {
-  if (!req.headers.token || req.headers.token !== 'tigrovi') {
+  if (!req.headers.token || req.headers.token !== password) {
     res.status(404).send({ message: 'Page not found' });
   } else {
     const db = getDb();
