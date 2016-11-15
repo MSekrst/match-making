@@ -6,7 +6,6 @@ import { Redirect } from 'react-router';
 
 class Score extends Component {
 
-
   share() {
     window.FB.ui({
       method: 'feed',
@@ -15,13 +14,22 @@ class Score extends Component {
     }, res => window.location.pathname = "/match");
   }
 
+  displayMessage(score) {
+    if (score < 50) {
+      return 'Life goes on.';
+    } else if (score < 80) {
+      return 'Not bad at all.';
+    } else {
+      return 'Excellent!';
+    }
+  }
+
   render() {
     if (!this.props.location.query || !this.props.location.query.score) {
       return <Redirect to="/match" />
     }
 
     const score = parseInt(this.props.location.query.score, 10);
-    console.log(score)
     return <div id="container">
       <div id="contentContainer">
         <div style={{ position: 'relative', display: 'flex', padding: '20px', paddingBottom: 0 }}>
@@ -40,7 +48,7 @@ class Score extends Component {
             src={this.props.location.query.logoUrl} />
         </div>
         <label style={{ color: 'grey', position: 'absolute', width: '100%', left: 0, bottom: '10px' }}>
-          {(score > 35) ? "Not bad." : "Life goes on."}<br />
+          {this.displayMessage(score)}<br />
           For real matches wisit us at: <a className="csd-link" href="http://careerdate.fer.hr/">Career speed dating</a>.</label>
       </div>
       <div className="loader2">
