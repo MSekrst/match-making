@@ -23,10 +23,7 @@ class Table extends Component {
     fetch('/tables/companies').then((res) => {
       const promise = res.json();
 
-      console.log(promise);
-
       promise.then(value => {
-        console.log(value);
         this.setState({
           companies: value
         });
