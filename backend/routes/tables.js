@@ -25,7 +25,7 @@ tableRouter.get('/matches', (req, res) => {
 tableRouter.get('/companies', (req, res) => {
   const db = getDb();
 
-  db.collection('companies').find({}, { sort: [['matches','desc']], limit: 10 }).toArray((err, companies) => {
+  db.collection('companies').find({}, { sort: [['matches','desc']], limit: 7 }).toArray((err, companies) => {
     if (err) {
       res.status(503).send({ message: "Error while getting companies" });
 
