@@ -61,7 +61,9 @@ class Score extends Component {
         <img className="srce" src={srce} alt="" />
         <h1 style={{ position: "absolute", top: "43px", color: "black", fontWeight: 400, width: "100%" }}>{score}%</h1>
       </div>
-      <div id="backLink" onClick={this.share.bind(this)}><div className="centerLink">Share on Facebook</div></div>
+      <div className="centerLink">
+        <div id="backLink" onClick={this.share.bind(this)}>Share on Facebook</div>
+      </div>
     </div >
   }
 }
