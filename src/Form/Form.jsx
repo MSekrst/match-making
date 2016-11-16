@@ -20,7 +20,6 @@ class Form extends Component {
     };
 
     this.setCompany = this.setCompany.bind(this);
-    this.sendData = this.sendData.bind(this);
     this.getCompany = this.getCompany.bind(this);
     this.renderCompanyLogo = this.renderCompanyLogo.bind(this);
   }
@@ -103,20 +102,6 @@ class Form extends Component {
     }
   }
 
-  sendData() {
-    this.setState({ isLoading: true });
-    window.FB.getLoginStatus((response) => {
-      if (response.status !== 'connected') {
-        window.FB.login(() => {
-          this.doTheWork();
-        });
-      }
-      else {
-        this.doTheWork();
-      }
-    });
-  }
-
   getCompany() {
     return this.state.active || '';
   }
@@ -158,7 +143,7 @@ class Form extends Component {
           <div style={{ color: 'grey', width: '90%', padding: '20px' }}>
             Select company and login with facebook. We need only your name.
                 </div>
-          <button disabled={this.getCompany() === ''} id="sendContainer" onClick={this.sendData}>
+          <button disabled={this.getCompany() === ''} id="sendContainer" onClick={() => { this.setState({ isLoading: true }); window.FB.login(() => { this.doTheWork() }) } }>
             {!this.state.isLoading ? "Login with Facebook" : <Spinner spinnerName="three-bounce" />}</button>
         </div>
       </div>
