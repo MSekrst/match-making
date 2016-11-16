@@ -35,12 +35,22 @@
 
 .selectCompany {
   height: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectCompany span{
+  max-width: 75%;
+  text-align: right;
 }
 
 .optionImage {
   padding: 5px;
-  height: 60px;
   position: relative;
+  width: 25%;
+  object-fit: contain;
+  height: auto;
+  max-height: 70px;
   float: left;
 }
 
@@ -93,5 +103,8 @@
 
 #currentLogo {
   padding: 20px 0 20px;
-  height: 120px;
+  height: auto;
+  max-height: 150px;
+  width: 80%;
+  object-fit: contain;
 }
