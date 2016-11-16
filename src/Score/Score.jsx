@@ -30,11 +30,11 @@ class Score extends Component {
     }
 
     const score = parseInt(this.props.location.query.score, 10);
-    return <div id="container">
+    return <div id="container" style={{ minHeight: window.innerHeight + 'px' }}>
       <div id="contentContainer">
-        <div style={{ position: 'relative', display: 'flex', padding: '15px 10px 0 15px'}}>
+        <div style={{ position: 'relative', display: 'flex', padding: '15px 10px 0 15px' }}>
           <img src={logo} alt="" style={{ width: 'auto', height: '60px' }} />
-          <h1 style={{ fontWeight: 400, display: 'inline-block'}} className="header2">Your career match</h1>
+          <h1 style={{ fontWeight: 400, display: 'inline-block' }} className="header2">Your career match</h1>
         </div>
         <div id="imageContainer">
           <img className="image"
@@ -48,7 +48,7 @@ class Score extends Component {
             src={this.props.location.query.logoUrl} />
         </div>
         <label style={{ color: 'grey', position: 'absolute', width: '100%', left: 0, bottom: '10px' }}>
-          <strong style={{color: '#ed1c24'}}>{this.displayMessage(score)}</strong><br />
+          <strong style={{ color: '#ed1c24' }}>{this.displayMessage(score)}</strong><br />
           For real matches visit <a className="csd-link" href="http://careerdate.fer.hr/">Career Speed Dating</a><br />
           or <a className="csd-link" href="/match">try again</a>.
         </label>

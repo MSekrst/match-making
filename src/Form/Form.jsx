@@ -138,9 +138,11 @@ class Form extends Component {
             </div>}
           onChange={this.setCompany}
           />
-        {this.renderCompanyLogo()}
+        <div className="logoContainer">
+          {this.renderCompanyLogo()}
+        </div>
         <br />
-        <div style={{ position: 'fixed', width: '100%', bottom: 0, height: '30%' }}>
+        <div style={{ width: '100%', bottom: 0, height: '30%' }}>
           <div style={{ color: 'grey', width: '90%', padding: '20px' }}>
             Select company and login with facebook. We need only your name.
                 </div>
