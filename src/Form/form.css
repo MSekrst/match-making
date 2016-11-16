@@ -37,7 +37,7 @@ body{
   height: auto;
   object-fit: contain;
   animation-name: showLogo;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
   animation-timing-function: cubic-bezier();
 }
 
@@ -99,8 +99,16 @@ body{
   background: whitesmoke;
 }
 
+#sendContainer:focus, #sendContainer:active{
+  outline-color: transparent;
+}
+
 .Select-control{
   height: 50px!important;
+}
+
+.three-bounce > div{
+  background: white;
 }
 
 .Select-placeholder, .Select--single > .Select-control .Select-value{

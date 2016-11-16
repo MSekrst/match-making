@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import { Redirect } from 'react-router';
-
+import Spinner from 'react-spinkit';
 import logo from '../../images/logo.png';
 import './form.css';
 
@@ -16,6 +16,7 @@ class Form extends Component {
       activeUrl: '',
       warning: false,
       user: null,
+      isLogging: false
     };
 
     this.setCompany = this.setCompany.bind(this);
@@ -90,9 +91,11 @@ class Form extends Component {
         warning: true
       });
     }
+    this.setState({ isLoading: false });
   }
 
   sendData() {
+    this.setState({ isLogging: true });
     window.FB.getLoginStatus((response) => {
       if (response.status !== 'connected') {
         window.FB.login(() => {
@@ -146,7 +149,8 @@ class Form extends Component {
           <div style={{ color: 'grey', width: '90%', padding: '20px' }}>
             Select company and login with facebook. We need only your name.
                 </div>
-          <button disabled={this.getCompany() === ''} id="sendContainer" onClick={this.sendData}>Login with Facebook</button>
+          <button disabled={this.getCompany() === ''} id="sendContainer" onClick={this.sendData}>
+            {!this.state.isLoading ? "Login with Facebook" : <Spinner spinnerName="three-bounce" />}</button>
         </div>
       </div>
     )

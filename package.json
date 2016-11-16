@@ -63,6 +63,7 @@
     "react-flip-move": "^2.6.4",
     "react-router": "next",
     "react-select": "^1.0.0-rc.2",
+    "react-spinkit": "^1.1.11",
     "socket.io": "^1.5.1",
     "whatwg-fetch": "^1.0.0"
   },
