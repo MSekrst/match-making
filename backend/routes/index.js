@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import matchRouter from './match';
 import companiesRouter from './companies';
 import tableRouter from './tables'
+import logosRouter from './logos';
 
 const router = express.Router();
 
@@ -16,8 +17,11 @@ router.use('/companies', companiesRouter);
 // table router - GET /matches /companies
 router.use('/tables', tableRouter);
 
+// logos router - GET logo
+router.use('/logos', logosRouter);
+
 // wildcard route -> returns index.html for react-router
-router.use('/*', function(req, res) {
+router.use('/*', (req, res) => {
   res.sendFile(resolve(__dirname, '../../build/index.html'))
 });
 
