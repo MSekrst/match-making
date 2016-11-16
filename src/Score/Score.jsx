@@ -59,9 +59,9 @@ class Score extends Component {
         </div>
         <div style={{ backgroundColor: "white", width: "100%", height: ((100 - score) + '%'), position: "absolute" }} />
         <img className="srce" src={srce} alt="" />
-        <h1 style={{ position: "absolute", top: "43px", color: "black", fontWeight: 400 }}>{score}%</h1>
+        <h1 style={{ position: "absolute", top: "43px", color: "black", fontWeight: 400, width: "100%" }}>{score}%</h1>
       </div>
-      <a id="backLink" onClick={this.share.bind(this)}>Share on Facebook</a>
+      <div id="backLink" onClick={this.share.bind(this)}><div className="centerLink">Share on Facebook</div></div>
     </div >
   }
 }

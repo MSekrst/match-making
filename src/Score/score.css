@@ -65,14 +65,13 @@
 
 .loader2{
     display: flex;
-    justify-content: center;
     align-content: center;
     width: 50%;
     height: 26%;
     position: relative;
     float: right;
     max-width: 250px;
-    margin:10%;
+    margin-top: 10%;
     top: 20%;
 }
 
@@ -94,14 +93,20 @@
 #backLink {
   position: absolute;
   bottom: 10px;
-  padding: 10px;
-  width: 80%;
-  background-color: #0874ba;
+  width: 100%;
   color: white;
   font-size: 20px;
-  border-radius: 10px;
   text-decoration: none;
   cursor: pointer;
+}
+
+.centerLink {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  padding: 10px;
+  background-color: #0874ba;
+  border-radius: 10px;
 }
 
 @media(max-width: 387px){
