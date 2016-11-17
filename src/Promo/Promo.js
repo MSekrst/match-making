@@ -21,9 +21,10 @@ class Promo extends Component {
             <div id="content">
               <h1 className="title"><span style={{color: "#ec0a12"}}>Career</span><span style={{color: "#0372b8"}}> Speed Dating</span></h1>
               <div className="instruction">Which company is the best for <span style={{fontWeight: 700, color: "black"}}>YOU</span>?</div>
-              <div className="instruction">Visit <span style={{color: "black", fontSize: "45px", fontWeight: "bold"}}>goo.gl/5oIR</span></div>
+              <div className="instruction">Visit <span style={{color: "black", fontSize: "45px", fontWeight: "bold"}}>https://matchmaking.fer.hr</span></div>
+              <div className="instruction">or <span style={{color: "black", fontSize: "45px", fontWeight: "bold"}}>goo.gl/Y8bP2i</span></div>
               <div className="instruction">or scan:</div>
-              <img src={logoqr} alt="goo.gl/5oIR" height="350"/>
+              <img src={logoqr} alt="goo.gl/Y8bP2i" height="350"/>
               <div className="instruction">to find out!</div>
             </div>
           </div>
