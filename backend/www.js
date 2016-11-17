@@ -40,7 +40,7 @@ function onError(error) {
 
 const options = {
   key: fs.readFileSync('/etc/letsencrypt/live/matchmaking.fer.hr/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/matchmaking.fer.hr/cert.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/matchmaking.fer.hr/fullchain.pem'),
 };
 
 const server = http.createServer(
