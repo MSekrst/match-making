@@ -1,7 +1,8 @@
 import debug from 'debug';
-import http from 'http';
+import http  from 'http';
+import https from 'https';
 import SocketIO from 'socket.io';
-
+import * as fs from 'fs';
 import app from './app';
 
 /**
@@ -37,10 +38,21 @@ function onError(error) {
   }
 }
 
-const server = http.Server(app);
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/matchmaking.fer.hr/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/matchmaking.fer.hr/cert.pem'),
+};
 
-// sockets
-export const io = new SocketIO(server);
+const server = http.createServer(
+  function (req, res) {
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+ }
+);
+const sServer = https.createServer(options, app);
+
+// socket 
+export const io = new SocketIO(sServer);
 io.on('connection', () => {
   console.log('Client connected!');
 });
@@ -59,7 +71,8 @@ function onListening() {
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port);
+server.listen(80);
+sServer.listen(443);
 console.log('Server is running!');
 server.on('error', onError);
 server.on('listening', onListening);
