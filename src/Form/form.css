@@ -31,24 +31,27 @@ body{
   margin-top: 20px;
 }
 
-#currentLogo{
+#currentLogo {
   width: 100%;
   max-height: 150px;
   height: auto;
   object-fit: contain;
   animation-name: showLogo;
-  animation-duration: 0.3s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier();
 }
 
-@keyframes showLogo{
-  from{
-    padding-top: 50px;
-    opacity: 0.01;
+@keyframes showLogo {
+  0% {
+
+    opacity: .01;
+    transform: scale(0.8);
   }
-  to{
-    padding-top: 20px;
+
+  100% {
+
     opacity: 1;
+    transform: scale(1);
   }
 }
 

@@ -10,8 +10,28 @@ class Score extends Component {
     window.FB.ui({
       method: 'feed',
       link: 'http://careerdate.fer.hr/',
-      caption: 'My career match with ' + this.props.location.query.company + ' ' + this.props.location.query.score + '%',
+      picture: 'https://matchmaking.fer.hr/images/' + this.picture(),
+      description: 'My match with ' + this.props.location.query.company + ' is ' + this.props.location.query.score
+      + '%. For more details on the event visit this link. If you want to find out which company is compatible with YOU visit http://matchmaking.fer.hr or goo.gl/Y8bP2i.',
+      title: 'Career Speed Dating @ FER',
+      caption: 'Can you beat my score? Find out at goo.gl/Y8bP2i',
     }, res => window.location.pathname = "/match");
+  }
+
+  picture() {
+    if (!this.props.location.query || !this.props.location.query.score) {
+      return 'share_good.png';
+    }
+
+    const score = this.props.location.query.score;
+
+    if (score < 50) {
+      return 'share_ok.png';
+    } else if (score < 80) {
+      return 'share_good.png';
+    } else {
+      return 'share_excellent';
+    }
   }
 
   displayMessage(score) {

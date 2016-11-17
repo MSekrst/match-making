@@ -5,6 +5,7 @@ import matchRouter from './match';
 import companiesRouter from './companies';
 import tableRouter from './tables'
 import logosRouter from './logos';
+import imagesRouter from './images';
 
 const router = express.Router();
 
@@ -19,6 +20,9 @@ router.use('/tables', tableRouter);
 
 // logos router - GET logo
 router.use('/logos', logosRouter);
+
+// images router - GET image
+router.use('/images', imagesRouter);
 
 // wildcard route -> returns index.html for react-router
 router.use('/*', (req, res) => {
