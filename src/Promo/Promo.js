@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FlipMove from 'react-flip-move';
 
 import './promo.css';
 import logoqr from '../../images/qrcode.png';
@@ -65,7 +66,12 @@ class Promo extends Component {
             </div>
             <div className="content">
               <h1 className="title">Latest matches</h1>
-              {this.renderMatches()}
+              <FlipMove id="animationPromo" staggerDurationBy="30"
+                        duration={500}
+                        enterAnimation="elevator"
+                        leaveAnimation="elevator">
+                {this.renderMatches()}
+              </FlipMove>
             </div>
           </div>
         </div>
