@@ -41,7 +41,7 @@ matchRouter.post('/', (req, res) => {
 
     db.collection('companies').updateOne({ companyName }, { $inc: { matches: 1 }});
 
-    db.collection('companies').find({}, { sort: [['matches','desc']]}).limit(10).toArray((err, companies) => {
+    db.collection('companies').find({}, { sort: [['matches','desc']]}).limit(7).toArray((err, companies) => {
       if (err) {
         console.log('---ERROR--- while getting companies for socket');
       }
@@ -53,7 +53,7 @@ matchRouter.post('/', (req, res) => {
       io.emit('topCompanies', { companies });
     });
 
-    db.collection('matches').find({}, { sort: [['score','desc']], limit: 10 }).toArray((err, matches) => {
+    db.collection('matches').find({}, { sort: [['score','desc']] }).limit(7).toArray((err, matches) => {
       if (err) {
         console.log('---ERROR--- while getting matches for socket');
       }
@@ -68,14 +68,23 @@ matchRouter.post('/', (req, res) => {
 });
 
 const calculateName = (username, companyName) => {
-  const name = (username.toLowerCase().replace(/\s+/, "").substr(0, 20) + companyName.toLowerCase().replace(/\s+/, ""));
+  const name = (username.toLowerCase().replace(/\s+/, "").substr(0, 30) + companyName.toLowerCase().replace(/\s+/, ""));
 
   let score = 0;
 
   for (let i = 0; i < name.length; ++i) {
-    const value = name.charCodeAt(i) || 0;
+    let value = name.charCodeAt(i) || 1;
 
-    score += 2 * value;
+    if (name.charAt(i) === 'm') value = 2;
+    if (name.charAt(i) === 'r') value = 3;
+    if (name.charAt(i) === 'n') value = 4;
+    if (name.charAt(i) === 'p') value = 5;
+    if (name.charAt(i) === 't') value = 6;
+    if (name.charAt(i) === 'l') value = 7;
+    if (name.charAt(i) === 'j') value = 8;
+    if (name.charAt(i) === 'ć') value = 9;
+
+    score += value;
   }
 
   return score % 75 + 25;

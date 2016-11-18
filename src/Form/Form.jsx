@@ -40,6 +40,7 @@ class Form extends Component {
     }
   }
 
+
   componentWillUnmount() {
     window.onfocus = null;
   }
@@ -49,7 +50,7 @@ class Form extends Component {
       const promise = res.json();
 
       promise.then(value => {
-        value = value.map(x => ({ value: x.companyName, label: x.companyName, img: x.logoUrl }));
+        value = value.map(x => ({value: x.companyName, label: x.companyName, img: x.logoUrl}));
         this.setState({
           companies: value
         });
@@ -58,8 +59,9 @@ class Form extends Component {
   }
 
   componentDidMount() {
+    document.addEventListener("fbLoad", () => this.render())
     window.onfocus = () => {
-      this.setState({ isLoading: false });
+      this.setState({isLoading: false});
     }
   }
 
@@ -108,7 +110,7 @@ class Form extends Component {
 
   renderCompanyLogo() {
     if (this.state.activeUrl) {
-      return <img id="currentLogo" src={this.state.activeUrl} alt={this.state.active} />
+      return <img id="currentLogo" src={this.state.activeUrl} alt={this.state.active}/>
     }
   }
 
@@ -117,34 +119,39 @@ class Form extends Component {
       return <Redirect to={{
         pathname: '/score',
         query: this.state.params
-      }} />
+      }}/>
     }
 
     return (
       <div id="formDiv">
-        <img id="logo" src={logo} alt="Career Speed Dating" />
+        <img id="logo" src={logo} alt="Career Speed Dating"/>
         <Select className="selector"
-          name="companies"
-          searchable={false}
-          value={this.state.active}
-          options={this.state.companies}
-          optionRenderer={(item) =>
-            <div className="selectCompany">
-              <img src={item.img} alt="" className="optionImage" />
-              <span className="companyName">{item.label}</span>
-            </div>}
-          onChange={this.setCompany}
-          />
+                name="companies"
+                searchable={false}
+                value={this.state.active}
+                options={this.state.companies}
+                optionRenderer={(item) =>
+                  <div className="selectCompany">
+                    <img src={item.img} alt="" className="optionImage"/>
+                    <span className="companyName">{item.label}</span>
+                  </div>}
+                onChange={this.setCompany}
+        />
         <div className="logoContainer">
           {this.renderCompanyLogo()}
         </div>
         <br />
-        <div style={{ width: '100%', bottom: 0, height: '30%' }}>
-          <div style={{ color: 'grey', width: '90%', padding: '20px' }}>
+        <div style={{width: '100%', bottom: 0, height: '30%'}}>
+          <div style={{color: 'grey', width: '90%', padding: '20px'}}>
             Select company and login with Facebook. We need only your name.
-                </div>
-          <button disabled={this.getCompany() === ''} id="sendContainer" onClick={() => { this.setState({ isLoading: true }); window.FB.login(() => { this.doTheWork() }) } }>
-            {!this.state.isLoading ? "Login with Facebook" : <Spinner spinnerName="three-bounce" />}</button>
+          </div>
+          <button disabled={this.getCompany() === ''} id="sendContainer" onClick={() => {
+            this.setState({isLoading: true});
+            window.FB.login(() => {
+              this.doTheWork()
+            })
+          } }>
+            {!this.state.isLoading ? "Login with Facebook" : <Spinner spinnerName="three-bounce"/>}</button>
         </div>
       </div>
     )
