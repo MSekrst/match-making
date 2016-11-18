@@ -8,3 +8,107 @@
     position: relative;
     float: left;
 }
+
+.namees .cmpny{
+    clear: both;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.namees{
+  padding-right: 20px;
+}
+
+@media (max-width: 1200px){
+  .panel > img {
+    width: 150px;
+    padding: 20px;
+  } 
+
+  .comp > div{
+    font-size: 35px!important;
+  }
+
+  .comp > div:not(.logoBest){
+    clear: both;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /*.compPanel{
+    position: static;
+    margin: 0 auto;
+    top: 0!important;
+    left: 0!important;
+    transform: none!important;
+  }*/
+
+}
+
+@media (max-width: 992px){
+  #panelDiv{
+    width: 85%;
+  }
+
+  .panel > img{
+    width: 100px;
+    padding: 20px;
+  }
+
+  .panel > img {
+    width: 100px;
+    padding: 10px;
+  } 
+
+  .namees > div{
+    clear: both;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .comp > div{
+    font-size: 30px!important;
+  }
+}
+
+@media (max-width: 768px){
+  #panelDiv{
+    width: 100%;
+    top: 0;
+    left: 0;
+    transform: none;
+    min-height: 100%;
+  }
+
+  #panelHeader h1{
+    width: 100%;
+    font-size: 30px!important;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    padding-bottom: 20px;
+  }
+
+  .panelRow div{
+    font-size: 20px!important;
+  }
+
+  .namees{
+    width: 70%!important;
+  }
+
+  .namees > div{
+    width: 90%!important;
+    display: block!important;
+  }
+
+  .logoBest{
+    max-height: 60%!important;
+  }
+
+  #particles{
+    display: none;
+  }
+}
