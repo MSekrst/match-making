@@ -1,5 +1,6 @@
 import express from 'express';
 
+import { io } from '../www';
 import getDb from '../mongo/mongo';
 
 const tableRouter = express.Router();
@@ -35,6 +36,8 @@ tableRouter.get('/companies', (req, res) => {
     for (let i = 0; i < companies.length; ++i) {
       companies[i]['index'] = i + 1;
     }
+
+    io.emit('topCompanies', { companies });
 
     res.status(200).send(companies);
   });
