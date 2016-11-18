@@ -53,7 +53,7 @@ matchRouter.post('/', (req, res) => {
       io.emit('topCompanies', { companies });
     });
 
-    db.collection('matches').find({}, { sort: [['score','desc']] }).limit(7).toArray((err, matches) => {
+    db.collection('matches').find({}, { sort: [['score','desc']] }).limit(10).toArray((err, matches) => {
       if (err) {
         console.log('---ERROR--- while getting matches for socket');
       }
