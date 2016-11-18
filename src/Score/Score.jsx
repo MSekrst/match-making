@@ -12,9 +12,9 @@ class Score extends Component {
       link: 'http://careerdate.fer.hr/',
       picture: 'https://matchmaking.fer.hr/images/' + this.picture(),
       description: 'My match with ' + this.props.location.query.company + ' is ' + this.props.location.query.score
-      + '%. For more details on the event visit this link. If you want to find out which company is compatible with YOU visit http://matchmaking.fer.hr or goo.gl/Y8bP2i.',
+      + '%. For more details on the event visit this link. If you want to find out which company is compatible with YOU visit http://matchmaking.fer.hr',
       title: 'Career Speed Dating @ FER',
-      caption: 'Can you beat my score? Find out at goo.gl/Y8bP2i',
+      caption: 'Can you beat my score? Find out at matchmaking.fer.hr',
     }, res => window.location.pathname = "/match");
   }
 
