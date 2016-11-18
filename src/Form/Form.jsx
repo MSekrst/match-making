@@ -141,7 +141,7 @@ class Form extends Component {
         <br />
         <div style={{ width: '100%', bottom: 0, height: '30%' }}>
           <div style={{ color: 'grey', width: '90%', padding: '20px' }}>
-            Select company and login with facebook. We need only your name.
+            Select company and login with Facebook. We need only your name.
                 </div>
           <button disabled={this.getCompany() === ''} id="sendContainer" onClick={() => { this.setState({ isLoading: true }); window.FB.login(() => { this.doTheWork() }) } }>
             {!this.state.isLoading ? "Login with Facebook" : <Spinner spinnerName="three-bounce" />}</button>

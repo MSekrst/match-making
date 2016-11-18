@@ -46,7 +46,7 @@ class Table extends Component {
       return <div>No results yet</div>
     }
 
-    return this.state.companies.map(item => <Company key={item._id} name={item.companyName.toUpperCase()}
+    return this.state.companies.map(item => <Company  name={item.companyName.toUpperCase()}
                                                      image={item.logoUrl} match={item.matches}/>)
   }
 
