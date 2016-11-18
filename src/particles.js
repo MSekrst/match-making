@@ -1,7 +1,7 @@
 export const particles = {
   "particles": {
     "number": {
-      "value": 100,
+      "value": 80,
       "density": {
         "enable": true,
         "value_area": 1603.4120608655228
@@ -21,8 +21,8 @@ export const particles = {
       },
       "image": {
         "src": "http://www.hartsanitation.com/img/0994/929.png",
-        "width": 1000,
-        "height": 1000
+        "width": 300,
+        "height": 300
       }
     },
     "opacity": {
@@ -75,10 +75,10 @@ export const particles = {
         "mode": "repulse"
       },
       "onclick": {
-        "enable": true,
+        "enable": false,
         "mode": "push"
       },
-      "resize": true
+      "resize": false
     },
     "modes": {
       "grab": {

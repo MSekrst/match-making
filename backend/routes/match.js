@@ -64,6 +64,8 @@ matchRouter.post('/', (req, res) => {
 
       io.emit('topMatches', { matches });
     });
+
+    io.emit('newMatch', match.value);
   });
 });
 

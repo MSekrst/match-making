@@ -13,7 +13,11 @@ class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matches: []
+      matches: [],
+      latest: {
+        lastAdded: 1,
+        items: []
+      }
     };
     this.renderItems = this.renderItems.bind(this);
   }
