@@ -7,6 +7,7 @@ import './panel.css';
 import Item from './Item';
 import { particles } from '../particles';
 import logo from '../../images/logo.png';
+import live from '../../images/live.png';
 import password from '../../config/password';
 
 class Panel extends Component {
@@ -64,7 +65,8 @@ class Panel extends Component {
             <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
             <div id="panelDiv">
               <div id="panelHeader">
-                <h1 className="header" style={{ fontSize: "50px"}}>BEST MATCHES</h1>
+                <h1 className="header" style={{ fontSize: "50px"}}>BEST MATCHES TODAY</h1>
+                <img className="live" src={live} alt="LIVE"/>
               </div>
               <FlipMove id="panelDiv1" staggerDurationBy="30"
                         duration={500}

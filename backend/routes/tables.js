@@ -1,4 +1,5 @@
 import express from 'express';
+import { ObjectId } from 'mongodb';
 
 import getDb from '../mongo/mongo';
 
@@ -6,8 +7,9 @@ const tableRouter = express.Router();
 
 tableRouter.get('/matches', (req, res) => {
   const db = getDb();
+  const today = new Date().toISOString().substr(0, 10);
 
-  db.collection('matches').find({}, { sort: [['score','desc']]}).limit(10).toArray((err, matches) => {
+  db.collection('matches').find({_id: { $gt : ObjectId(Math.floor(new Date(today)/1000).toString(16) + "0000000000000000")}}, { sort: [['score','desc']]}).limit(10).toArray((err, matches) => {
     if (err) {
       res.status(503).send({ message: "Error while getting matches" });
 

@@ -19,7 +19,7 @@ class Promo extends Component {
   }
 
   componentDidMount() {
-    // window.particlesJS('particles', particles);
+    window.particlesJS('particles', particles);
 
     const socket = window.io();
 
@@ -45,7 +45,7 @@ class Promo extends Component {
                      company={item.companyName.toUpperCase()}
                      top={(item.index - 1) * 60 + 5} numberTop={(item.index - 1) * 60 - 12}
                      color={(item.score)} score={item.score}/>;
-      }
+      } else return '';
     });
   }
 
@@ -65,7 +65,7 @@ class Promo extends Component {
               <div className="instruction">to find out!</div>
             </div>
             <div className="content">
-              <h1 className="title">Latest matches</h1>
+              <h1 className="title" style={{color: '#0372b8'}}>Latest matches</h1>
               <FlipMove id="animationPromo" staggerDurationBy="30"
                         duration={500}
                         enterAnimation="elevator"

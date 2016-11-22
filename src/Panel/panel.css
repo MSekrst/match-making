@@ -47,7 +47,7 @@
 
 .header{
     display: inline-block;
-    marginTop: 5%;
+    margin-left: 66px;
     color: #0874ba;
     font-weight: 500;
     font-size: 35px;
@@ -61,4 +61,9 @@
     height: 50px;
     position: relative;
     float: right;
+}
+
+.live {
+  float: right;
+  padding: 10px;
 }

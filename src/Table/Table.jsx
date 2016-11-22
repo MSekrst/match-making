@@ -59,7 +59,7 @@ class Table extends Component {
             <img src={logo} alt="" width="230" style={{position: "absolute", left: 0, top: 0}}/>
             <div className="compPanel" id="panelDiv">
               <div id="panelHeader">
-                <h1 className="header" style={{fontSize: "50px"}}>COMPANIES WITH THE MOST MATCHES</h1>
+                <h1 className="header" style={{fontSize: "50px", margin: '0'}}>COMPANIES WITH THE MOST MATCHES</h1>
               </div>
               <FlipMove id="panelDiv1" staggerDurationBy="30"
                         duration={500}

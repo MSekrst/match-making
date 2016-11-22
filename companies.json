@@ -2,7 +2,6 @@
 {"_id":{"$oid":"582c4b70e01934175016b6ed"},"companyName":"Asseco SEE","logoUrl":"/logos/Asseco SEE.jpg","matches":0}
 {"_id":{"$oid":"582c4bd3e01934175016b6ee"},"companyName":"AT \u0026 S","logoUrl":"/logos/ats_logo_RGB_large.jpg","matches":0}
 {"_id":{"$oid":"582c4beae01934175016b6ef"},"companyName":"British American Tobacco","logoUrl":"/logos/BAT.png","matches":0}
-{"_id":{"$oid":"582c4bfde01934175016b6f0"},"companyName":"Comminus","logoUrl":"/logos/Comminus.jpg","matches":0}
 {"_id":{"$oid":"582c4c10e01934175016b6f1"},"companyName":"Ericsson Nikola Tesla","logoUrl":"/logos/Ericsson.png","matches":0}
 {"_id":{"$oid":"582c4c24e01934175016b6f2"},"companyName":"Farmeron","logoUrl":"/logos/Farmeron.png","matches":0}
 {"_id":{"$oid":"582c4c4ce01934175016b6f3"},"companyName":"Financijska agencija","logoUrl":"/logos/FINA_logo_PLAVI.png","matches":0}
@@ -28,3 +27,5 @@
 {"_id":{"$oid":"582c4e3ce01934175016b707"},"companyName":"Undabot","logoUrl":"/logos/Undabot.png","matches":0}
 {"_id":{"$oid":"582c4e4ae01934175016b708"},"companyName":"VIPnet","logoUrl":"/logos/VIPnet.png","matches":0}
 {"_id":{"$oid":"582cc131aba0160f64f6ab3f"},"companyName":"Repsly","logoUrl":"/logos/Repsly.png","matches":0}
+{"_id":{"$oid":"582cc131aba0160f52f1ac3e"},"companyName":"Acceleratio","logoUrl":"/logos/acceleratio.png","matches":0}
+
