@@ -37,15 +37,13 @@ class Promo extends Component {
   }
 
   renderMatches() {
-    console.log('', this.state.matches);
-
     return this.state.matches.map(item => {
       if (item) {
         return <Item key={item._id} name={item.username.toUpperCase()}
                      company={item.companyName.toUpperCase()}
                      top={(item.index - 1) * 60 + 5} numberTop={(item.index - 1) * 60 - 12}
                      color={(item.score)} score={item.score}/>;
-      } else return '';
+      } else return;
     });
   }
 

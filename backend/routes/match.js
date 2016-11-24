@@ -1,4 +1,5 @@
 import express from 'express';
+import { ObjectId } from 'mongodb';
 
 import getDb from '../mongo/mongo';
 import { io } from '../www';
@@ -36,6 +37,10 @@ matchRouter.post('/', (req, res) => {
         return;
       }
 
+      if (!company[0]) {
+        res.status(404).send('Company not found!');
+      }
+
       res.status(200).send({ ...match.value, logoUrl: company[0].logoUrl });
     });
 
@@ -53,7 +58,9 @@ matchRouter.post('/', (req, res) => {
       io.emit('topCompanies', { companies });
     });
 
-    db.collection('matches').find({}, { sort: [['score','desc']] }).limit(10).toArray((err, matches) => {
+    const today = new Date().toISOString().substr(0, 10);
+
+    db.collection('matches').find({_id: { $gt : ObjectId(Math.floor(new Date(today)/1000).toString(16) + "0000000000000000")}}, { sort: [['score','desc']]}).limit(10).toArray((err, matches) => {
       if (err) {
         console.log('---ERROR--- while getting matches for socket');
       }
